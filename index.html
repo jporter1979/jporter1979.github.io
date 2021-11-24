@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <title>Lottery</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <meta http-equiv="refresh" content="30">
+</head>
+<body>
+
+  <h1>Lottery DApp</h1>
+
+  <button class="enable-button" id="enable-button">Enable Metamask</button>
+
+  <div class="asset-interface">
+    <div class="row1">
+      <h3>Enter To Win!</h3>
+    </div>
+    <div class="row2">
+      <label>
+        Current Lottery Pool: <span id="pool"></span> ETH 
+      </label>
+    </div>
+    <div class="row3">
+      <input id="eth-amount" type="text" placeholder="ETH" />
+      <button id="eth-amount-button">Submit</button>
+    </div>
+    <div class="row4"> 
+      <span id="state"></span>
+    </div>
+    <div class="row5"> 
+      <span id="winner"></span>
+    </div>
+    
+  </div>
+  
+
+</body>
+
+<script type="text/javascript" src="./app.js"></script>
+
+</html>
