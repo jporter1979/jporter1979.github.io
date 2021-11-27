@@ -4,7 +4,7 @@ const startLotteryButton = document.getElementById('start-lottery-button');
 const poolBalance = document.getElementById('pool');
 const lotteryState = document.getElementById('state');
 const lotteryWinner = document.getElementById('winner');
-const lotteryAddress = '0xeD951573076D0848A3Ff41Bc4d9760A49AF1Fdb2';
+const lotteryAddress = '0x6d20EBE6179dcf518230C38565fDA2955D4Db37E';
 const lotteryABI = [
 	{
 		"inputs": [],
