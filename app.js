@@ -316,20 +316,20 @@ startLotteryButton.onclick = async () =>{
     var accounts = await web3.eth.getAccounts();
 	var owner = await getOwner();
 	const state = await readLotteryState();
-		if(state == 0){
-			alert("The lottery is already started!")
-		}
-		else if(state == 2){
-			alert("The lottery is currently drawing, you cannot start a new lottery!")
-		}
-		else{
-			var web3 = new Web3();
-    		web3.setProvider(window.ethereum);
-			const lottery = new web3.eth.Contract(lotteryABI, lotteryAddress);
-            lottery.setProvider(window.ethereum);
-			const duration = document.getElementById('start-lottery').value;
-			await lottery.methods.startNewLottery(duration).send({from: accounts[0]});
-		}
+	if(state == 0){
+		alert("The lottery is already started!")
+	}
+	else if(state == 2){
+		alert("The lottery is currently drawing, you cannot start a new lottery!")
+	}
+	else{
+		var web3 = new Web3();
+		web3.setProvider(window.ethereum);
+		const lottery = new web3.eth.Contract(lotteryABI, lotteryAddress);
+		lottery.setProvider(window.ethereum);
+		const duration = document.getElementById('start-lottery').value;
+		await lottery.methods.startNewLottery(duration).send({from: accounts[0]});
+	}
 }
 
 async function readLotteryPoolBalance(){
