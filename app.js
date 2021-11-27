@@ -315,11 +315,7 @@ startLotteryButton.onclick = async () =>{
     web3.setProvider(window.ethereum);
     var accounts = await web3.eth.getAccounts();
 	var owner = await getOwner();
-	if(owner != accounts[0]){
-		alert("You are not authorized to start a new lottery!");
-	}
-	else{
-		const state = await readLotteryState();
+	const state = await readLotteryState();
 		if(state == 0){
 			alert("The lottery is already started!")
 		}
@@ -334,7 +330,6 @@ startLotteryButton.onclick = async () =>{
 			const duration = document.getElementById('start-lottery').value;
 			await lottery.methods.startNewLottery(duration).send({from: accounts[0]});
 		}
-	}
 }
 
 async function readLotteryPoolBalance(){
