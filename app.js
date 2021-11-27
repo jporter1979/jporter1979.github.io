@@ -1,5 +1,6 @@
 const enableButton = document.getElementById('enable-button');
 const ethAmountButton = document.getElementById('eth-amount-button');
+const startLotteryButton = document.getElementById('start-lottery-button');
 const poolBalance = document.getElementById('pool');
 const lotteryState = document.getElementById('state');
 const lotteryWinner = document.getElementById('winner');
@@ -309,6 +310,33 @@ ethAmountButton.onclick = async () => {
     
 }
 
+startLotteryButton.onclick = async () =>{
+	var web3 = new Web3();
+    web3.setProvider(window.ethereum);
+    var accounts = await web3.eth.getAccounts();
+	var owner = await getOwner();
+	if(owner != accounts[0]){
+		alert("You are not authorized to start a new lottery!");
+	}
+	else{
+		const state = await readLotteryState();
+		if(state == 0){
+			alert("The lottery is already started!")
+		}
+		else if(state == 2){
+			alert("The lottery is currently drawing, you cannot start a new lottery!")
+		}
+		else{
+			var web3 = new Web3();
+    		web3.setProvider(window.ethereum);
+			const lottery = new web3.eth.Contract(lotteryABI, lotteryAddress);
+            lottery.setProvider(window.ethereum);
+			const duration = document.getElementById('start-lottery').value;
+			await lottery.methods.startNewLottery(duration).send({from: accounts[0]});
+		}
+	}
+}
+
 async function readLotteryPoolBalance(){
     var web3 = new Web3();
     web3.setProvider(window.ethereum);
@@ -334,4 +362,13 @@ async function getLotteryWinner(){
     lottery.setProvider(window.ethereum);
     var winner = await lottery.methods.winner().call();
     return winner;
+}
+
+async function getOwner(){
+	var web3 = new Web3();
+    web3.setProvider(window.ethereum);
+	const lottery = new web3.eth.Contract(lotteryABI, lotteryAddress);
+	lottery.setProvider(window.ethereum);
+	var owner = await lottery.methods.owner().call();
+	return owner;
 }

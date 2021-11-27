@@ -63,11 +63,11 @@ label {
 
 .asset-interface {
   width: 325px;
-  height: 230px;
+  height: 280px;
   display: grid;
   align-items: center;
   grid-template-columns: 20px auto 20px;
-  grid-template-rows: 20px 40px 30px 50px 50px 20px;
+  grid-template-rows: 20px 40px 30px 50px 50px 30px 30px;
   text-align: center;
   color: #FFFFFF;
   background-color: #070A0E;
@@ -98,4 +98,9 @@ label {
 .asset-interface .row5 {
   grid-column: 2 / span 1;
   grid-row: 6 / span 1;
+}
+
+.asset-interface .row6 {
+  grid-column: 2 / span 1;
+  grid-row: 7 / span 1;
 }
